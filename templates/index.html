@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick News - Golden Edition</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="main-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="header-left">
+                        <svg class="trending-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="22,7 13.5,15.5 8.5,10.5 2,17"></polyline>
+                            <polyline points="16,7 22,7 22,13"></polyline>
+                        </svg>
+                        <h1>NEWS NOW! QUICK!</h1>
+                    </div>
+                </div>
+                <p class="header-subtitle">Stay updated with the latest trending news from around the world</p>
+            </div>
+        </header>
+
+        <!-- Filter Section -->
+        <div class="filter-section">
+            <div class="container">
+                <div class="filter-card">
+                    <div class="filter-grid">
+                        <!-- First Column - Topic and Language -->
+                        <div class="filter-column">
+                            <div class="filter-group">
+                                <label for="topic">Category</label>
+                                <select id="topic" class="filter-select">
+                                    <option value="all">All News</option>
+                                    <option value="business">Business</option>
+                                    <option value="entertainment">Entertainment</option>
+                                    <option value="health">Health</option>
+                                    <option value="politics">Politics</option>
+                                    <option value="science">Science</option>
+                                    <option value="sports">Sports</option>
+                                    <option value="technology">Technology</option>
+                                </select>
+
+                            </div>
+
+                            <div class="filter-group">
+                                <label for="language">Language</label>
+                                <select id="language" class="filter-select">
+                                    <option value="en">English</option>
+                                    <option value="es">Spanish</option>
+                                    <option value="fr">French</option>
+                                    <option value="de">German</option>
+                                    <option value="it">Italian</option>
+                                    <option value="pt">Portuguese</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Second Column - Country and Date Range -->
+                        <div class="filter-column">
+                            <div class="filter-group">
+                                <label for="country">Country</label>
+                                <select id="country" class="filter-select">
+                                    <option value="all">World</option>
+                                    <option value="au">Australia</option>
+                                    <option value="ca">Canada</option>
+                                    <option value="fr">France</option>
+                                    <option value="de">Germany</option>
+                                    <option value="jp">Japan</option>
+                                    <option value="uk">United Kingdom</option>
+                                    <option value="us">United States</option>
+                                </select>
+                            </div>
+
+                            <div class="filter-group">
+                                <label for="dateRange">Date Range</label>
+                                <select id="dateRange" class="filter-select">
+                                    <option value="today">Today (from midnight)</option>
+                                    <option value="week" selected>Last 7 days</option>
+                                    <option value="month">Last 30 days</option>
+                                    <option value="year">Last 365 days</option>
+                                </select>
+
+                            </div>
+                        </div>
+
+                        <!-- Third Column - Keywords and Apply Filters Button -->
+                        <div class="filter-column">
+                            <div class="filter-group">
+                                <label for="keywords">Keywords</label>
+                                <input type="text" id="keywords" class="filter-input" placeholder="Search keywords...">
+
+                            </div>
+                            
+                            <div class="filter-button-container">
+                                <button class="btn" id="applyFilters">Apply Filters</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="container">
+            <div class="news-header">
+                <h2 id="newsTitle">Trending News</h2>
+                <div class="separator"></div>
+                <p class="news-count"><span id="articleCount">0</span> articles found</p>
+            </div>
+
+            <!-- Error Message -->
+            <div class="error-message" id="errorMessage" style="display: none;"></div>
+
+            <!-- Loading State -->
+            <div class="loading-grid" id="loadingGrid" style="display: none;">
+                <div class="loading-card"></div>
+                <div class="loading-card"></div>
+                <div class="loading-card"></div>
+                <div class="loading-card"></div>
+                <div class="loading-card"></div>
+                <div class="loading-card"></div>
+            </div>
+
+            <!-- News Grid -->
+            <div class="news-grid" id="newsGrid">
+                <!-- News cards will be populated by JavaScript -->
+            </div>
+
+            <!-- No Results -->
+            <div class="no-results" id="noResults" style="display: none;">
+                <p class="no-results-title">No news found</p>
+                <p class="no-results-subtitle">Try adjusting your filters to see more results</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
