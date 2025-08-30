@@ -89,27 +89,24 @@ def get_date_from_range(date_range):
     return from_date.isoformat() + 'Z'
 
 def fetch_news_from_gnews(category='general', language='en', country=None, max_articles=10, from_date=None, search_query=None):
-    # Fetch news from GNews API.
+    # Fetch news from GNews API using the top-headlines endpoint.
+    # This endpoint supports all our filters including search queries via the 'q' parameter.
     try:
-        # Build the API URL
+        # Always use top-headlines endpoint as it supports all parameters
+        url = f"{GNEWS_BASE_URL}/top-headlines"
+        params = {
+            'lang': language,
+            'max': max_articles,
+            'apikey': GNEWS_API_KEY
+        }
+        
+        # Add category parameter (only if not searching by query)
+        if not search_query and category:
+            params['category'] = category
+        
+        # Add search query parameter
         if search_query:
-            # Use search endpoint for queries
-            url = f"{GNEWS_BASE_URL}/search"
-            params = {
-                'q': search_query,
-                'lang': language,
-                'max': max_articles,
-                'apikey': GNEWS_API_KEY
-            }
-        else:
-            # Use top headlines endpoint
-            url = f"{GNEWS_BASE_URL}/top-headlines"
-            params = {
-                'category': category,
-                'lang': language,
-                'max': max_articles,
-                'apikey': GNEWS_API_KEY
-            }
+            params['q'] = search_query
         
         # Add optional parameters
         if country:

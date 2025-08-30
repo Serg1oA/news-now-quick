@@ -2,7 +2,7 @@
 let currentFilters = {
     topic: "all",
     language: "en",
-    country: "all",
+    country: "us",
     dateRange: "week",
     keywords: ""
 };
